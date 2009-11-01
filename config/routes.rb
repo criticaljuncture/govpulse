@@ -4,6 +4,13 @@ ActionController::Routing::Routes.draw do |map|
   map.about 'about', :controller => 'special', :action => 'about'
   map.vote 'vote', :controller => 'special', :action => 'vote'
   
+  # AUTH
+  map.resource :user_session
+
+  # USERS
+  map.resource :account, :controller => "users"
+  map.resources :users
+  
   # ENTRIES
   map.entries 'entries.:format', :controller => 'entries', :action => 'index'
   

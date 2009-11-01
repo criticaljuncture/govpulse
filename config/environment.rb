@@ -19,7 +19,7 @@ Rails::Initializer.run do |config|
   config.gem "chronic", :version => '0.2.3'
   config.gem "zilkey-active_api", :lib => 'active_api', :version => '0.2.0'
   config.gem "curb", :version => '0.4.4.0'
-  config.gem "haml", :version => '2.2.2'
+  config.gem "haml", :version => '2.2.10'
   config.gem "chriseppstein-compass", :lib => 'compass', :version => '0.8.8'
   config.gem "geokit", :lib => 'geokit', :version => '1.4.1'
   config.gem 'mislav-will_paginate', :version => '2.3.11', :lib => 'will_paginate'
@@ -28,9 +28,13 @@ Rails::Initializer.run do |config|
   
   config.gem "patron", :version => "0.4.2"
   # sunlight gem and dependencies
-  config.gem "json", :version => '1.1.7'
+  config.gem "json", :version => '1.1.9'
   config.gem "ym4r", :version => '0.6.1'
   config.gem 'sunlight', :version => '1.0.1'
+  
+  # authentication
+  config.gem "authlogic", :version => '=2.1.2'
+  config.gem 'bcrypt-ruby', :lib =>'bcrypt', :version =>'=2.1.2'
 
   # disabled as requires C library to install...the Locator module will return a fake result if not installed
   # config.gem "geoip_city", :version => '0.2.0'
