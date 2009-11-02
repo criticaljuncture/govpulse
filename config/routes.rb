@@ -1,11 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  # SPECIAL PAGES
-  map.root :controller => 'special', :action => 'home'
-  map.about 'about', :controller => 'special', :action => 'about'
-  map.vote 'vote', :controller => 'special', :action => 'vote'
-  
   # AUTH
   map.resource :user_session
+  map.login  'login',  :controller => "user_sessions", :action => "new"
+  map.logout 'logout', :controller => "user_sessions", :action => "destroy"
 
   # USERS
   map.resource :account, :controller => "users"
@@ -68,4 +65,9 @@ ActionController::Routing::Routes.draw do |map|
   
   # LOCATION
   map.resource :location, :only => [:update, :edit], :member => {:congress => :get}
+  
+  # SPECIAL PAGES
+  map.root :controller => 'special', :action => 'home'
+  map.about 'about', :controller => 'special', :action => 'about'
+  map.vote 'vote', :controller => 'special', :action => 'vote'
 end

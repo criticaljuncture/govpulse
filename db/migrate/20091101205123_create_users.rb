@@ -19,11 +19,11 @@ class CreateUsers < ActiveRecord::Migration
       t.string    :last_login_ip                                      # optional, see Authlogic::Session::MagicColumns
       
       t.timestamps
-      
-      add_index :users, :login
-      add_index :users, :email
-      add_index :users, :perishable_token 
     end
+    
+    add_index :users, :login
+    add_index :users, :email
+    add_index :users, :perishable_token
   end
 
   def self.down
