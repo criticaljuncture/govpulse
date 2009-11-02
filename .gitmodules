@@ -22,3 +22,6 @@
 [submodule "vendor/plugins/formtastic"]
 	path = vendor/plugins/formtastic
 	url = git://github.com/justinfrench/formtastic.git
+[submodule "vendor/plugins/resource_controller"]
+	path = vendor/plugins/resource_controller
+	url = git://github.com/giraffesoft/resource_controller.git
