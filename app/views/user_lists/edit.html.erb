@@ -1,0 +1,6 @@
+<h2>Edit list</h2>
+
+<% semantic_form_for :user_list, user_user_list_path(@parent_object, @user_list) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.submit 'Save' %>
+<% end %>

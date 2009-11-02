@@ -4,9 +4,12 @@ ActionController::Routing::Routes.draw do |map|
   map.login  'login',  :controller => "user_sessions", :action => "new"
   map.logout 'logout', :controller => "user_sessions", :action => "destroy"
 
-  # USERS
+  # USERS & LISTS
   map.resource :account, :controller => "users"
-  map.resources :users
+  map.resources :users do |user|
+     user.resources :user_lists, :as => 'lists', :except => :index
+  end 
+  map.resources :user_list_items, :except => [:index, :show] 
   
   # ENTRIES
   map.entries 'entries.:format', :controller => 'entries', :action => 'index'

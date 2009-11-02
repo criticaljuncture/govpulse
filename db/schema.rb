@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091101205123) do
+ActiveRecord::Schema.define(:version => 20091102093720) do
 
   create_table "agencies", :force => true do |t|
     t.integer  "parent_id"
@@ -175,6 +175,27 @@ ActiveRecord::Schema.define(:version => 20091101205123) do
 
   add_index "urls", ["name"], :name => "index_urls_on_name"
   add_index "urls", ["type"], :name => "index_urls_on_type"
+
+  create_table "user_list_items", :force => true do |t|
+    t.integer  "entry_id"
+    t.integer  "user_list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_list_items", ["entry_id"], :name => "index_user_list_items_on_entry_id"
+  add_index "user_list_items", ["user_list_id"], :name => "index_user_list_items_on_user_list_id"
+
+  create_table "user_lists", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "slug"
+    t.boolean  "public",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_lists", ["user_id"], :name => "index_user_lists_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",                              :null => false

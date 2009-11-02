@@ -1,0 +1,11 @@
+<h2><%=h @user_list.name %></h2>
+
+<p>
+  Public: <%= @user_list.public? ? 'Yes' : 'No' %>
+</p>
+
+<ul>
+  <% @user_list.user_list_items.each do |item| %>
+    <li><%= link_to item.entry.title, entry_path(item.entry) %></li>
+  <% end %>
+</ul>
