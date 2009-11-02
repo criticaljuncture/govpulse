@@ -19,3 +19,6 @@
 [submodule "vendor/plugins/sitemap_generator"]
 	path = vendor/plugins/sitemap_generator
 	url = git://github.com/adamsalter/sitemap_generator-plugin.git
+[submodule "vendor/plugins/formtastic"]
+	path = vendor/plugins/formtastic
+	url = git://github.com/justinfrench/formtastic.git
