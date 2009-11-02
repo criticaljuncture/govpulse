@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090908134858) do
+ActiveRecord::Schema.define(:version => 20091101205123) do
 
   create_table "agencies", :force => true do |t|
     t.integer  "parent_id"
@@ -175,5 +175,28 @@ ActiveRecord::Schema.define(:version => 20090908134858) do
 
   add_index "urls", ["name"], :name => "index_urls_on_name"
   add_index "urls", ["type"], :name => "index_urls_on_type"
+
+  create_table "users", :force => true do |t|
+    t.string   "login",                              :null => false
+    t.string   "email",                              :null => false
+    t.string   "crypted_password",                   :null => false
+    t.string   "password_salt",                      :null => false
+    t.string   "persistence_token",                  :null => false
+    t.string   "single_access_token",                :null => false
+    t.string   "perishable_token",                   :null => false
+    t.integer  "login_count",         :default => 0, :null => false
+    t.integer  "failed_login_count",  :default => 0, :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["login"], :name => "index_users_on_login"
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
 
 end
