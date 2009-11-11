@@ -1,8 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   # AUTH
   map.resource :user_session
-  map.login  'login',  :controller => "user_sessions", :action => "new"
-  map.logout 'logout', :controller => "user_sessions", :action => "destroy"
+  map.login    'login',    :controller => "user_sessions", :action => "new"
+  map.logout   'logout',   :controller => "user_sessions", :action => "destroy"
+  map.register 'register', :controller => "users",         :action => "new"
 
   # USERS & LISTS
   map.resource :account, :controller => "users"

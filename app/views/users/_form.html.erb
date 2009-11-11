@@ -1,8 +1,7 @@
 <% f.inputs do %>
   <%= f.input :login, :label => 'Username'             %>
   <%= f.input :email                                   %>
-  <% if f.new_record? %>
+  <% if f.object.new_record? %>
     <%= f.input :password, :as => :password              %>
-    <%= f.input :password_confirmation, :as => :password %>
   <% end %>
 <% end %>
