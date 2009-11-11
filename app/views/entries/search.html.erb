@@ -130,4 +130,19 @@
 </ul>
 <% end %>
 
-
+<div class="modal-box">
+  <div class="modal-box-content">
+    <h3>Login / Register</h3>    
+     <%# TODO HELP-RUBY i know this isn't real %>
+     <form action="/user_sessions/new" class="group" method="get">
+      <fieldset>
+          <ol>
+            <li><label for="username">Login</label><input type="text" id="username" name="username" title="Username" value=""/></li>
+            <li><label for="password">Password</label><input type="password" id="password" name="password" title="Password" value=""/></li>
+          </ol>
+      </fieldset>    
+      <input type="submit" class="btn" name="commit" value="Login"/>
+      <a class="cancel" href="#">Cancel</a>    
+    </form> 
+  </div>  <!-- end login-box-content -->
+</div>  <!-- end login-box -->

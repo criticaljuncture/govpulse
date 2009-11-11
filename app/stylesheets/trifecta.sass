@@ -833,6 +833,8 @@ div.ornament
 form
   input.labelHighlight 
     :color #aeaeae !important
+  input.labelHighlight:focus
+    :color #333333 !important
   li
     span
       :color #6e6e6e
@@ -906,6 +908,32 @@ body #footer
         :color #39505e
         :margin 0 0 1em 1em
 
+#main .content .modal-box
+  :border 5px solid #DDDDDD
+  :-border-radius 10px
+  :-moz-border-radius 10px
+  :-webkit-border-radius 10px
+  :display none
+  :margin 50px auto
+  :width 516px
+  .modal-box-content
+    :background #fff
+    :border 1px solid #ccc
+    :padding 1em
+    fieldset
+      :border none
+      :margin 0
+    h3
+      :border-bottom 1px solid #ccc
+      :color #fa6900
+      :font-family "Helvetica Neue",Arial,Helvetica,sans-serif
+      :font-weight bold
+
+form
+  ol
+    :list-style none
+    :margin 0
+
 #feedback  
   :background url(/images/feedback.png) no-repeat left top
   :_background-image none
@@ -925,6 +953,7 @@ body #footer
   :_background-image none
   :_filter progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/modal_bg.png', sizingMethod='scale')     
   :height 100%
+  :left 0
   :position absolute
   :top 0
   :width 100%
