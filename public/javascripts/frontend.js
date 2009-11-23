@@ -19,6 +19,15 @@ $(document).ready(function() {
     });
   });
 
+  //modal open and close
+  $(".spawn_modal").bind("click", function(){
+    var modal_id = $(this).attr("href");
+    $(modal_id).show().wrap("<div class='modal'></div>");
+    $(modal_id).find("a.cancel").bind("click", function(){
+      $(modal_id).parent().remove().end().hide();
+      $(this).unbind("click");
+    });
+  })
   
   $("#feedback").bind("mouseenter", function(){
     $(this).animate({left: -5}, 200); 
