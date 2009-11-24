@@ -35,6 +35,7 @@ class EntrySearch
     end
     @end_date ||= Entry.latest_publication_date
     
+    @per_page = options[:per_page] || 20
     
     @order = if options[:order] == 'relevance'
               "@relevance DESC, publication_date DESC"
@@ -59,7 +60,8 @@ class EntrySearch
     @entries = Entry.search(@search_term, 
       :page => @page,
       :order => @order,
-      :with => with
+      :with => with,
+      :per_page => @per_page
     )
     
     # TODO: FIXME: Ugly hack to get total pages to be within bounds
