@@ -78,8 +78,9 @@
 <% if @search.entries && @search.entries.size > 0 %>
     <h3>Other Formats</h3>
     <%# TODO: HELP-DESIGN: HELP-COPY: Need RSS icon, some text here %>
-    <p>Subscribe to an <%= link_to 'RSS Feed', params.merge(:format => :rss, :order => 'date', :publication_date_less_than => nil) %> of these search results.</p>
+    <p><strong>Subscribe</strong> to an <%= link_to 'RSS Feed', params.merge(:format => :rss, :order => 'date', :publication_date_less_than => nil) %> of these search results.</p>
     <% feed_autodiscovery url_for(params.merge(:format => :rss, :order => 'date', :publication_date_less_than => nil)) %>
+    <p><strong>Embed</strong> these results on your site.</p>
 <% end %>
 
 <h3>Advanced Search</h3>
@@ -143,3 +144,5 @@
     </form> 
   </div>  <!-- end login-box-content -->
 </div>  <!-- end login-box -->
+
+<%= render :partial => 'widget_form' %>

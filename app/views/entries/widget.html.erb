@@ -1,0 +1,6 @@
+<% @search.entries.each do |entry| %>
+  <div>
+    <h3><%= link_to entry.title, entry_path(entry) %></h3>
+    <%= link_to entry.agency.name, agency_path(entry.agency) if entry.agency %>
+  </div>
+<% end %>
