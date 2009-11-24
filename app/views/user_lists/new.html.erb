@@ -1,0 +1,6 @@
+<h2>Create new list</h2>
+
+<% semantic_form_for :user_list, @user_list, :url => user_user_lists_path(@parent_object) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.submit 'Create' %>
+<% end %>

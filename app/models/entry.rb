@@ -86,6 +86,8 @@ class Entry < ActiveRecord::Base
   
   has_many :referenced_dates, :dependent => :destroy
   
+  has_many :user_list_items, :dependent => :destroy
+  
   after_create :create_entry_detail
   
   def granule_class 

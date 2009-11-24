@@ -25,12 +25,16 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '2.3.11', :lib => 'will_paginate'
   config.gem "fastercsv", :version => '1.4.0'
   config.gem "amatch", :version => '0.2.3'
-  
   config.gem "patron", :version => "0.4.2"
+  config.gem "formtastic", :version => "0.9.1"
   # sunlight gem and dependencies
   config.gem "json", :version => '1.1.7'
   config.gem "ym4r", :version => '0.6.1'
   config.gem 'sunlight', :version => '1.0.1'
+  
+  # authentication
+  config.gem "authlogic", :version => '=2.1.2'
+  config.gem 'bcrypt-ruby', :lib =>'bcrypt', :version =>'=2.1.2'
 
   # disabled as requires C library to install...the Locator module will return a fake result if not installed
   # config.gem "geoip_city", :version => '0.2.0'

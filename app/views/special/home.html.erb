@@ -52,6 +52,9 @@
 <% end %>
 
 <% content_for :sidebar do %>
+
+  <h3>View Entries Near</h3>
+  <%= render :partial => 'maps/location_search_form', :locals => {:location => nil} %>
+
   <%= render :partial => 'agencies/pulse', :locals => {:featured_agencies => @featured_agencies} %>
 <% end %>
-

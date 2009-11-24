@@ -1,13 +1,23 @@
 ActionController::Routing::Routes.draw do |map|
-  # SPECIAL PAGES
-  map.root :controller => 'special', :action => 'home'
-  map.about 'about', :controller => 'special', :action => 'about'
-  map.vote 'vote', :controller => 'special', :action => 'vote'
+  # AUTH
+  map.resource :user_session
+  map.login    'login',    :controller => "user_sessions", :action => "new"
+  map.logout   'logout',   :controller => "user_sessions", :action => "destroy"
+  map.register 'register', :controller => "users",         :action => "new"
+
+  # USERS & LISTS
+  map.resource :account, :controller => "users"
+  map.resources :users do |user|
+     user.resources :user_lists, :as => 'lists', :except => :index
+  end 
+  map.resources :user_list_items, :except => [:index, :show] 
   
   # ENTRIES
   map.entries 'entries.:format', :controller => 'entries', :action => 'index'
   
   map.entries_search 'entries/search', :controller => 'entries', :action => 'search'
+  map.entries_widget 'entries/widget', :controller => 'entries', :action => 'widget'
+  
   map.entry 'entries/:year/:month/:day/:document_number/:slug', :controller => 'entries',
                                                                 :action     => 'show',
                                                                 :year       => /\d{4}/,
@@ -66,4 +76,9 @@ ActionController::Routing::Routes.draw do |map|
   
   # LOCATION
   map.resource :location, :only => [:update, :edit], :member => {:congress => :get}
+  
+  # SPECIAL PAGES
+  map.root :controller => 'special', :action => 'home'
+  map.about 'about', :controller => 'special', :action => 'about'
+  map.vote 'vote', :controller => 'special', :action => 'vote'
 end
