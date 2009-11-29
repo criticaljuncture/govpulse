@@ -5,6 +5,15 @@
   <%= javascript_include_tag 'jquery.js' %>
 </head>
 <body>
-<%= yield %>
+  <div id="widget_container">
+    
+    <%= yield %>
+    
+    <div id="widget_footer">
+      <a href="http://govpulse.us">gov<span>pulse</span></a>
+      <p>Federal Register entries</p>
+    </div>
+  </div>
+  
 </body>
 </html>
