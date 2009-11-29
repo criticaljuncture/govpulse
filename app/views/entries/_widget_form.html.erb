@@ -1,25 +1,30 @@
 <form id="widget_form">
   <ol>
     <li><label>Name</label> <input type="text" name="title" value="Related from the Federal Register"/></li>
-    <li><label>Primary Color</label> <input type="text" name="primary_color" /></li>
-    <li><label>Secondary Color</label> <input type="text" name="secondary_color" /></li>
+    <li><label>Primary Color</label> <input type="text" name="primary_color" id="primary_color"/></li>
+    <li><label>Secondary Color</label> <input type="text" name="secondary_color" id="secondary_color" /></li>
     <li>
   </ol>
 </form>
-<textarea id="widget_code"></textarea>
-
-<script>
-  function val_for_url(name) {
-    return escape($('#widget_form input[name=' + name + ']').val())
-  }
-
-  $('#widget_form').change(function(){
-    $('#widget_code').val(
-      '<iframe src="http://govpulse.us/entries/widget?title=' + val_for_url('title') +
-      '&primary_color=' +  val_for_url('primary_color') +
-      '&secondary_color=' + val_for_url('secondary_color') +
-      '"></iframe>'
-    )
-  });
-  
-</script>
+<textarea id="widget_code" cols="40" rows="3"></textarea>
+<iframe id="preview" />
+<% add_javascript do %>
+  <%# stylesheet_link_tag "colorpicker", :media => :screen %>
+  <%# javascript_include_tag 'jquery.colorpicker.js' %>
+  <script>
+    $(document).ready(function() {
+      function val_for_url(name) {
+        return escape($('#widget_form input[name=' + name + ']').val())
+      }
+      $('#widget_form').change(function(){
+        var url = '<%= entries_widget_url(params) %>&title=' + val_for_url('title') +
+          '&primary_color=' +  val_for_url('primary_color') +
+          '&secondary_color=' + val_for_url('secondary_color');
+        $('#preview').attr('src', url);
+        $('#widget_code').val(
+          '<iframe src="' + url + '"></iframe>'
+        );
+      });
+    });
+  </script>
+<% end %>
