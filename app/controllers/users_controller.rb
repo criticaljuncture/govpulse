@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user].except(:sign_in_type))
     if @user.save
       flash[:notice] = "Account registered!"
       redirect_back_or_default account_url

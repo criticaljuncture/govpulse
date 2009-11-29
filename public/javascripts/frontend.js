@@ -23,7 +23,8 @@ $(document).ready(function() {
   $(".spawn_modal").bind("click", function(){
     var modal_id = $(this).attr("href");
     $(modal_id).show().wrap("<div class='modal'></div>");
-    $(modal_id).find("a.cancel").bind("click", function(){
+    $(modal_id).find("a.cancel").bind("click", function(e){
+      e.preventDefault();
       $(modal_id).parent().remove().end().hide();
       $(this).unbind("click");
     });
