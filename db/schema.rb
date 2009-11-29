@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091102093720) do
+ActiveRecord::Schema.define(:version => 20091129210529) do
 
   create_table "agencies", :force => true do |t|
     t.integer  "parent_id"
@@ -124,6 +124,17 @@ ActiveRecord::Schema.define(:version => 20091102093720) do
 
   add_index "referenced_dates", ["entry_id", "date"], :name => "index_referenced_dates_on_entry_id_and_date"
 
+  create_table "search_subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "frequency"
+    t.string   "search_params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "search_subscriptions", ["user_id"], :name => "index_search_subscriptions_on_user_id"
+
   create_table "topic_assignments", :force => true do |t|
     t.integer  "topic_id"
     t.integer  "entry_id"
@@ -198,7 +209,7 @@ ActiveRecord::Schema.define(:version => 20091102093720) do
   add_index "user_lists", ["user_id"], :name => "index_user_lists_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "login",                              :null => false
+    t.string   "login"
     t.string   "email",                              :null => false
     t.string   "crypted_password",                   :null => false
     t.string   "password_salt",                      :null => false
@@ -213,7 +224,7 @@ ActiveRecord::Schema.define(:version => 20091102093720) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "updated_at",                         :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
