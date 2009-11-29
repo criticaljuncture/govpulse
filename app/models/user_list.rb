@@ -1,3 +1,17 @@
+=begin Schema Information
+
+ Table name: user_lists
+
+  id         :integer(4)      not null, primary key
+  user_id    :integer(4)
+  name       :string(255)
+  slug       :string(255)
+  public     :boolean(1)
+  created_at :datetime
+  updated_at :datetime
+
+=end Schema Information
+
 class UserList < ActiveRecord::Base
   belongs_to :user
   
