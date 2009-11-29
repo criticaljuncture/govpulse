@@ -33,6 +33,9 @@ class EntriesController < ApplicationController
     params[:per_page] = 5
     @search = EntrySearch.new(params)
     
+    @primary_color = params[:primary_color].gsub(/[^a-zA-Z0-9_#-]/,'');
+    @secondary_color = params[:secondary_color].gsub(/[^a-zA-Z0-9_#-]/,'');
+    
     render :layout => 'widget'
   end
   
