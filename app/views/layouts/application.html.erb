@@ -20,6 +20,8 @@
   <%= stylesheet_link_tag "utility", :media => :screen %>
   <%= stylesheet_link_tag "form", :media => :screen %>
   
+  <%= yield :stylesheets %>
+  
   <%= javascript_include_tag 'jquery.js'                %>
   <%= javascript_include_tag 'jquery-ui.js'             %>
   <%= javascript_include_tag 'jrails.js'                %>
@@ -34,7 +36,6 @@
   <%= javascript_include_tag 'jquery.horizontalCount.js'%>
   <%= javascript_include_tag 'tagcloud.js' %>
   <%= javascript_include_tag 'jquery.labelify.js' %>
-
 
   <%= yield :javascripts %>
 
