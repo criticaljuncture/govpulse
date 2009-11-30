@@ -103,6 +103,12 @@
 </style>
 
 <ul>
+
+<%# sassify do %>
+<!-- a
+  color: <%= @primary_color %> -->
+<%# end %>
+
 <% @search.entries.each do |entry| %>
   <li class="<%= cycle('even', 'odd') %>">
     <%= link_to truncate(entry.title, 75), entry_path(entry), :class => 'title' %>
