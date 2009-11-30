@@ -1,9 +1,126 @@
 <style>
-  a {color: <%= @primary_color %>;}
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, font, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  caption, tbody, tfoot, thead {margin: 0; padding: 0; border: 0;}
+
+  a {
+    color: <%= @primary_color %>;
+    text-decoration: none;
+  }
+
+  
   b {color: <%= @secondary_color %>;}
+  
+  body {
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    font-size: 15px;     
+    
+    padding: 10px 0 0 0; 
+  }
+  
+  #widget_container {
+  	background: url(/images/widget/widget.png) no-repeat 0 -65px;
+  	height: 480px;
+  	overflow: hidden;
+  	padding: 14px 0 28px 0;
+  	position: relative;
+  	width: 320px;
+  	margin: 0 auto;
+  }
+  #widget_container ul {
+    height: 480px;
+    /*border-left: 1px solid #e8ecef;*/
+    border-left: 5px solid #dde5ea;        
+    border-right: 5px solid #dde5ea;
+    list-style: none;
+    position: absolute;
+  }
+  #widget_container ul li {
+    border-bottom: 1px solid #ededed;     
+    height: 40px;
+    padding: 5px 25px 5px 5px; 
+    position: relative;
+  }
+  #widget_container ul li a {
+    display: block;
+  }
+  #widget_container ul li a.arrow {
+    background: url(/images/widget/widget.png) no-repeat 0 -50px;
+    display: block;
+    height: 14px;
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    width: 14px;
+  }
+  
+  #widget_container ul li:hover {
+    background: #f1f1f1;
+    /*border-left: 5px dashed <%= @secondary_color %>;    */
+  }
+
+  #widget_container ul li.odd {
+    background: #f6f6f6;
+  }
+  
+  #widget_container ul li .full {
+    display: none;
+  }
+  
+  #widget_footer {
+  	background: url(/images/widget/widget.png) no-repeat 0 0;	
+  	bottom: 0;
+  	height: 28px;
+  	position: absolute;
+  	width: 320px;
+  	
+  	text-indent: -9999px;
+  }
+  #widget_footer a {
+    background: url(/images/widget/widget.png) no-repeat 0 -29px;
+    bottom: 3px;
+    display: block;
+    height: 21px;
+    left: 10px;
+  	position: absolute;    
+  	width: 105px;
+  }
+  #widget_footer p {
+    background: url(/images/widget/widget.png) no-repeat -165px -33px; 
+    bottom: 6px;   
+    display: block;
+    height: 12px;
+  	position: absolute;   
+  	right: 10px; 
+  	width: 146px;  	
+  }  
+  
 </style>
+
+<ul>
 <% @search.entries.each do |entry| %>
-  <div>
-    <h3><%= link_to entry.title, entry_path(entry) %></h3>
-  </div>
+  <li class="<%= cycle('even', 'odd') %>">
+    <%= link_to truncate(entry.title, 75), entry_path(entry), :class => 'title' %>
+    <a class="arrow" href="#"></a>
+    
+    <div class="full">
+      <%#= raise entry.inspect %>
+      <dl>
+        <dt>Title</dt>
+        <dd><%= entry.title %></dd>
+        
+        <dt>Agency</dt>
+        <dd><%= entry.agency %></dd>
+        
+        <dt>Date</dt>
+        <dd><%= entry.publication_date %></dd>
+      </dl>
+    </div>
+  </li>
 <% end %>
+</ul>
