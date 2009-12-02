@@ -1,0 +1,4 @@
+page.hide "login_form"
+page.hide ".modal"
+page.replace 'login_link', :partial => "users/logged_in"
+page.insert_html :before, 'content', :partial => "layouts/flash/success", :locals => {:message => "Login successful"}

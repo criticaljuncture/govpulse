@@ -36,7 +36,13 @@
 
 <% content_for :sidebar do %>
   <h3>Login / Register</h3>
-  <%= link_to 'login / register', '#login', :class => 'spawn_modal' %>
+  <% if current_user %>
+    Welcome, <%= current_user.email %> <%= link_to 'logout', logout_path %>
+  <% else %>
+    <%= link_to 'login / register', '#login', :class => 'spawn_modal' %>
+  <% end %>
+  
+  <%= link_to 'subscribe via email', '#email_subscribe' %>
   
   <h3>View Entries Near</h3>
   <%= render :partial => 'maps/location_search_form', :locals => {:location => nil} %>

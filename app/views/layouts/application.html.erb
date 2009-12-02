@@ -34,6 +34,7 @@
   <%= javascript_include_tag 'jquery.horizontalCount.js'%>
   <%= javascript_include_tag 'tagcloud.js' %>
   <%= javascript_include_tag 'jquery.labelify.js' %>
+  <%= javascript_include_tag 'modal.js' %>
 
 
   <%= yield :javascripts %>
@@ -48,7 +49,16 @@
     <!-- HEADER -->
     <div id="header">
       
-      <div class="capitol"></div>      
+      <div class="capitol"></div>
+      
+      <% if current_user %>
+        <%= render :partial => 'users/logged_in' %>
+      <% else %>
+        <div id="login_link">
+          <%= link_to 'login / register', '#login', :class => 'spawn_modal' %>
+        </div>
+      <% end %>
+          
       
       <div class="type">
         <h1><a href="/" title="govpulse home">gov<span>pulse</span></a></h1>

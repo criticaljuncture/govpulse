@@ -1,40 +1,8 @@
-<script type="text/javascript">
-  $(document).ready(function() {
-    var login_target_form = $('form#login_register_modal');
-    
-    $('#user_sign_in_type_login').bind('change', function(e){
-      login_target_form.attr('action', '/user_session');
-      $('.modal #login .modal-box-content h3:first').html('Login');
-      $('form #user_submit').attr('value', 'Login');
-    });
-    
-    $('#user_sign_in_type_register').bind('change', function(e){
-      login_target_form.attr('action', '/users');
-      $('.modal #login .modal-box-content h3:first').html('Register');
-      $('form #user_submit').attr('value', 'Register');
-    });
-    
-    $(login_target_form).bind('submit', function(e){
-      e.preventDefault();
-      $.ajax({
-        type: "POST",
-        data: $(login_target_form).serialize(),
-        url: $(login_target_form).attr('action'),
-        success: function(result){
-          eval(result);
-        }
-       });
-      
-    })
-    
-  });
-</script>
-
 <h3>Login</h3>
 <% semantic_form_for :user, user, :url => user_session_path(), :html => {:id => 'login_register_modal'} do |f| %>
   <%= f.error_messages %>
   <%= f.input :sign_in_type, :collection => sign_in_type, :as => :radio, :label => 'Do you have a govpulse.us password?' %>
   <%= render :partial => "users/form", :locals  => {:f => f} %>
-  <%= f.submit "Login" %>
+  <%= button_to "Login" %>
   <%= link_to 'cancel', '', :class => 'cancel' %>
 <% end %>
