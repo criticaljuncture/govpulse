@@ -37,9 +37,9 @@
 <% content_for :sidebar do %>
   <h3>Login / Register</h3>
   <% if current_user %>
-    Welcome, <%= current_user.email %> <%= link_to 'logout', logout_path %>
+    <%= render :partial => 'users/logged_in' %>
   <% else %>
-    <%= link_to 'login / register', '#login', :class => 'spawn_modal' %>
+    <%= render :partial => 'users/login' %>
   <% end %>
   
   <%= link_to 'subscribe via email', '#email_subscribe' %>

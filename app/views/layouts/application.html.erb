@@ -54,9 +54,7 @@
       <% if current_user %>
         <%= render :partial => 'users/logged_in' %>
       <% else %>
-        <div id="login_link">
-          <%= link_to 'login / register', '#login', :class => 'spawn_modal' %>
-        </div>
+        <%= render :partial => 'users/login' %>
       <% end %>
           
       
