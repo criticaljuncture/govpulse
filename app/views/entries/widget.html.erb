@@ -19,7 +19,6 @@
   body {
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
     font-size: 15px;     
-    
     padding: 10px 0 0 0; 
   }
   
@@ -35,10 +34,9 @@
   #widget_container ul {
     height: 480px;
     /*border-left: 1px solid #e8ecef;*/
-    border-left: 5px solid #dde5ea;        
-    border-right: 5px solid #dde5ea;
     list-style: none;
     position: absolute;
+    width: 310px;
   }
   #widget_container ul li {
     border-bottom: 1px solid #ededed;     
@@ -100,33 +98,130 @@
   	width: 146px;  	
   }  
   
+  #widget_border {
+    border-left: 5px solid #dde5ea;        
+    border-right: 5px solid #dde5ea;
+  }
+  
+  #widget_container #info_pane {
+    display: block;
+    left: 320px;    
+    position: absolute;
+    top: 0;
+    height: 460px;
+    width: 310px;  
+    
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    font-size: 12px;  
+  }
+  #widget_container #info_content {
+    padding: 10px;
+  }
+  #widget_container #info_content dt {
+    border-bottom: 1px solid #ccc;
+    /*color: #fa6900;*/
+    color: #39505e;
+    font-weight: bold;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+    text-transform: uppercase;
+  }
+  
+  #widget_container #info_content dd {
+    color: #39505e;
+    margin: 0 0 1em 0;
+  }
+  
+  #widget_wrapper {
+    position: relative;
+    height: 480px;
+    width: 640px;
+  }
+  
+  #widget_nav {
+    background: grey;
+    height: 35px;
+  } 
+  
+  #widget_nav #back {
+    background: #444;
+    border: 2px solid #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+    color: #fafafa;
+    float: left;
+    
+    margin: 5px 0 0 5px;
+    padding: 3px;
+  } 
+
+  #widget_nav #view_entry {
+    background: #444;
+    border: 2px solid #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+    color: #fafafa;
+    float: right;
+    
+    margin: 5px 5px 0 0;
+    padding: 3px;
+  } 
+    
+  #widget_content {
+    padding: 10px;
+    display: block;
+    left: 320px;    
+    position: absolute;
+    top: 0;
+    height: 460px;
+    width: 290px;      
+  }
+  
 </style>
 
-<ul>
 
 <%# sassify do %>
 <!-- a
   color: <%= @primary_color %> -->
 <%# end %>
 
-<% @search.entries.each do |entry| %>
-  <li class="<%= cycle('even', 'odd') %>">
-    <%= link_to truncate(entry.title, 75), entry_path(entry), :class => 'title' %>
-    <a class="arrow" href="#"></a>
+<div id="widget_wrapper">
+  <ul>
+  <% @search.entries.each do |entry| %>
+    <li class="<%= cycle('even', 'odd') %>">
+      <%= link_to truncate(entry.title, 75), entry_path(entry), :class => 'title' %>
+      <a class="arrow" href="#"></a>
     
-    <div class="full">
-      <%#= raise entry.inspect %>
-      <dl>
-        <dt>Title</dt>
-        <dd><%= entry.title %></dd>
+      <div class="full">
+    
+        <%#= raise entry.inspect %>
+        <dl>
+          <dt>Title</dt>
+          <dd><%= truncate(entry.title, 200) %></dd>
         
-        <dt>Agency</dt>
-        <dd><%= entry.agency %></dd>
+          <dt>Agency</dt>
+          <dd><%= entry.agency.name %></dd>
         
-        <dt>Date</dt>
-        <dd><%= entry.publication_date %></dd>
-      </dl>
+          <dt>Date</dt>
+          <dd><%= entry.publication_date %></dd>
+          
+          <dt>Abstract</dt>
+          <dd><%= truncate(entry.abstract, 600) %></dd>
+        </dl>
+                
+      </div>
+    </li>
+  <% end %>
+  </ul>
+  <div id="info_pane">
+    <div id="widget_nav">
+      <a href="#" title="Back" id="back">Back</a> <a href="#" title="View Entry" id="view_entry">View entry</a>
     </div>
-  </li>
-<% end %>
-</ul>
+    <div id="info_content">
+    </div>  
+  </div>
+</div>

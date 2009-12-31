@@ -7,14 +7,22 @@
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
+      //center the link
       var li_height = 40;
-      
       $("a.title").each(function(){
         $(this).css("margin-top", (li_height-$(this).height())/2 );
       });
       
+      
       $("a.arrow").bind("click", function(){
-          $(this).closest("ul").css("left", "-320px");
+          //$(this).closest("li").css("left", "-320px");
+         $("#info_content").html( $(this).siblings("div.full").html() );    
+         $("#widget_wrapper").animate({left: -320}, 500);
+         
+      });
+      
+      $("#back").bind("click", function(){
+        $("#widget_wrapper").animate({left: 0}, 300);       
       });
       
     });
@@ -23,7 +31,9 @@
 <body>
   <div id="widget_container">
     
-    <%= yield %>
+    <div id="widget_border">
+      <%= yield %>
+    </div>
     
     <div id="widget_footer">
       <a href="http://govpulse.us" title="govpulse">gov<span>pulse</span></a>
