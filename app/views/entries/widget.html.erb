@@ -23,7 +23,7 @@
   }
   
   #widget_container {
-  	background: url(/images/widget/widget.png) no-repeat 0 -65px;
+  	background: url(/images/widget/widget.png) no-repeat 0 -105px;
   	height: 480px;
   	overflow: hidden;
   	padding: 14px 0 28px 0;
@@ -32,17 +32,27 @@
   	margin: 0 auto;
   }
   #widget_container ul {
-    height: 480px;
-    /*border-left: 1px solid #e8ecef;*/
+    height: 450px;
+    border-left: 1px solid #c4d0d8; 
+    border-right: 1px solid #c4d0d8;                         
     list-style: none;
+    margin-top: 15px;
     position: absolute;
-    width: 310px;
+    width: 308px;
   }
   #widget_container ul li {
     border-bottom: 1px solid #ededed;     
-    height: 40px;
+    height: 39px;
     padding: 5px 25px 5px 5px; 
     position: relative;
+  }
+  #widget_container ul li .arrowholder {
+    display: block;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
   }
   #widget_container ul li a {
     display: block;
@@ -51,32 +61,50 @@
     background: url(/images/widget/widget.png) no-repeat 0 -50px;
     display: block;
     height: 14px;
+    outline: 0;
     position: absolute;
-    right: 10px;
+    right: 5px;
     top: 18px;
     width: 14px;
   }
+  #widget_container ul li:hover { background: #f1f1f1; }
+  #widget_container ul li:hover .arrowholder { background-color: #ececec; }
+  #widget_container ul li.odd { background: #f6f6f6; }
+  #widget_container ul li .full { display: none; }
   
-  #widget_container ul li:hover {
-    background: #f1f1f1;
-    /*border-left: 5px dashed <%= @secondary_color %>;    */
+  #widget_container .load {
+    border-top: 1px solid #ddd; 
+    border-right: 1px solid #c4d0d8;           
+    border-bottom: 1px solid #ddd; 
+    border-left: 1px solid #c4d0d8;            
+    display: block;
+    height: 13px;
+    left: 5px;
+    position: absolute;
+    text-indent: -9999px;
+    width: 308px;
+   } 
+   #widget_container .load:hover { background: #e9e9e9;}
+  #widget_container #prev_entries { top: 14px; }
+  #widget_container #next_entries { bottom: 28px; }  
+  #widget_container #prev_entries span, 
+  #widget_container #next_entries span {
+    display: block;
+    height: 9px;
+    left: 150px;
+    position: absolute;
+    top: 2px;
+    width: 11px;
   }
-
-  #widget_container ul li.odd {
-    background: #f6f6f6;
-  }
-  
-  #widget_container ul li .full {
-    display: none;
-  }
+  #widget_container #prev_entries span { background: url(/images/widget/widget.png) no-repeat -295px -64px; }
+  #widget_container #next_entries span { background: url(/images/widget/widget.png) no-repeat -311px -64px; }
   
   #widget_footer {
   	background: url(/images/widget/widget.png) no-repeat 0 0;	
   	bottom: 0;
   	height: 28px;
   	position: absolute;
-  	width: 320px;
-  	
+  	width: 320px;	
   	text-indent: -9999px;
   }
   #widget_footer a {
@@ -138,39 +166,33 @@
     width: 640px;
   }
   
-  #widget_nav {
-    background: grey;
-    height: 35px;
-  } 
-  
+  #widget_nav { height: 35px; }   
   #widget_nav #back {
-    background: #444;
-    border: 2px solid #333;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px; /* future proofing */
-    -khtml-border-radius: 10px; /* for old Konqueror browsers */
-    color: #fafafa;
+    background: url(/images/widget/widget.png) no-repeat left -64px; 
+    display: block;
+    height: 26px;
     float: left;
-    
-    margin: 5px 0 0 5px;
-    padding: 3px;
+    margin: 10px 0 0 10px;
+    outline: none;    
+    text-indent: -9999px;
+    width: 57px;    
   } 
-
+  #widget_nav #back:hover { background-position: -58px -64px; }
   #widget_nav #view_entry {
-    background: #444;
-    border: 2px solid #333;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px; /* future proofing */
-    -khtml-border-radius: 10px; /* for old Konqueror browsers */
-    color: #fafafa;
+    background: url(/images/widget/widget.png) no-repeat -116px -64px;     
+    display: block;
+    height: 26px;
     float: right;
-    
-    margin: 5px 5px 0 0;
-    padding: 3px;
+    margin: 10px 10px 0 0;
+    outline: none;    
+    text-indent: -9999px;    
+    width: 88px;        
   } 
-    
+  #widget_nav #view_entry:hover {  background-position: -205px -64px; } 
+  
+  #widget_nav #back:active,
+  #widget_nav #view_entry:active { outline: none; }   
+  
   #widget_content {
     padding: 10px;
     display: block;
@@ -193,9 +215,12 @@
   <ul>
   <% @search.entries.each do |entry| %>
     <li class="<%= cycle('even', 'odd') %>">
-      <%= link_to truncate(entry.title, 75), entry_path(entry), :class => 'title' %>
-      <a class="arrow" href="#"></a>
-    
+      <%= link_to truncate(entry.title, 70), entry_path(entry), :class => 'title' %>
+      
+      <div class="arrowholder">
+        <a class="arrow" href="#"></a>
+      </div>
+      
       <div class="full">
     
         <%#= raise entry.inspect %>
@@ -208,6 +233,9 @@
         
           <dt>Date</dt>
           <dd><%= entry.publication_date %></dd>
+
+          <dt>Type</dt>
+          <dd><%= entry.type %></dd>
           
           <dt>Abstract</dt>
           <dd><%= truncate(entry.abstract, 600) %></dd>

@@ -2,27 +2,26 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-  <%= yield :stylesheets %>
   <%= javascript_include_tag 'jquery.js' %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       //center the link
       var li_height = 40;
-      $("a.title").each(function(){
-        $(this).css("margin-top", (li_height-$(this).height())/2 );
-      });
-      
-      
-      $("a.arrow").bind("click", function(){
+
+      $(".arrowholder, a.arrow").bind("click", function(e){
+          e.preventDefault();
           //$(this).closest("li").css("left", "-320px");
-         $("#info_content").html( $(this).siblings("div.full").html() );    
+         $("#info_content").html( $(this).closest("li").find("div.full").html() );    
          $("#widget_wrapper").animate({left: -320}, 500);
+         $("#widget_load_container").hide();
          
       });
       
-      $("#back").bind("click", function(){
-        $("#widget_wrapper").animate({left: 0}, 300);       
+      $("#back").bind("click", function(e){
+        e.preventDefault();
+        $("#widget_wrapper").animate({left: 0}, 300); 
+         $("#widget_load_container").show();              
       });
       
     });
@@ -34,7 +33,10 @@
     <div id="widget_border">
       <%= yield %>
     </div>
-    
+    <div id ="widget_load_container">
+      <a href="#" id="prev_entries" class="load"><span></span>Previous entries</a>
+      <a href="#" id="next_entries" class="load"><span></span>Next entries</a>      
+    </div>
     <div id="widget_footer">
       <a href="http://govpulse.us" title="govpulse">gov<span>pulse</span></a>
       <p>Federal Register entries</p>
