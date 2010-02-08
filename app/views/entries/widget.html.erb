@@ -215,18 +215,18 @@
   <ul>
   <% @search.entries.each do |entry| %>
     <li class="<%= cycle('even', 'odd') %>">
-      <%= link_to truncate(entry.title, 70), entry_path(entry), :class => 'title' %>
+      <%= link_to truncate(entry.title, :length => 70), entry_path(entry), :class => 'title' %>
       
       <div class="arrowholder">
         <a class="arrow" href="#"></a>
       </div>
-      
+
       <div class="full">
     
         <%#= raise entry.inspect %>
         <dl>
           <dt>Title</dt>
-          <dd><%= truncate(entry.title, 200) %></dd>
+          <dd><%= truncate(entry.title, :length => 200) %></dd>
         
           <dt>Agency</dt>
           <dd><%= entry.agency.name %></dd>
@@ -238,7 +238,7 @@
           <dd><%= entry.type %></dd>
           
           <dt>Abstract</dt>
-          <dd><%= truncate(entry.abstract, 600) %></dd>
+          <dd><%= truncate(entry.abstract, :length => 600) %></dd>
         </dl>
                 
       </div>
