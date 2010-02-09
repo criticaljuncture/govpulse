@@ -9,22 +9,20 @@
   caption, tbody, tfoot, thead {margin: 0; padding: 0; border: 0;}
 
   a {
-    color: <%= @primary_color %>;
+    color: #43688f;
     text-decoration: none;
-  }
-
-  
-  b {color: <%= @secondary_color %>;}
-  
+  } 
+  a:hover {
+    text-decoration: underline;
+  } 
   body {
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
-    font-size: 15px;     
+    font-size: 13px;     
     padding: 10px 0 0 0; 
-  }
-  
+  } 
   #widget_container {
   	background: url(/images/widget/widget.png) no-repeat 0 -105px;
-  	height: 480px;
+  	height: 450px;
   	overflow: hidden;
   	padding: 14px 0 28px 0;
   	position: relative;
@@ -36,7 +34,6 @@
     border-left: 1px solid #c4d0d8; 
     border-right: 1px solid #c4d0d8;                         
     list-style: none;
-    margin-top: 15px;
     position: absolute;
     width: 308px;
   }
@@ -47,15 +44,13 @@
     position: relative;
   }
   #widget_container ul li .arrowholder {
+    cursor: pointer;
     display: block;
     height: 50px;
     position: absolute;
     right: 0;
     top: 0;
     width: 25px;
-  }
-  #widget_container ul li a {
-    display: block;
   }
   #widget_container ul li a.arrow {
     background: url(/images/widget/widget.png) no-repeat 0 -50px;
@@ -70,35 +65,21 @@
   #widget_container ul li:hover { background: #f1f1f1; }
   #widget_container ul li:hover .arrowholder { background-color: #ececec; }
   #widget_container ul li.odd { background: #f6f6f6; }
-  #widget_container ul li .full { display: none; }
-  
-  #widget_container .load {
-    border-top: 1px solid #ddd; 
-    border-right: 1px solid #c4d0d8;           
-    border-bottom: 1px solid #ddd; 
-    border-left: 1px solid #c4d0d8;            
+  #widget_container ul li .full { display: none; }  
+  #widget_wrapper {
+    position: relative;
+    height: 450px;
+    width: 640px;
+  } 
+  #widget_content {
+    padding: 10px;
     display: block;
-    height: 13px;
-    left: 5px;
+    left: 320px;    
     position: absolute;
-    text-indent: -9999px;
-    width: 308px;
-   } 
-   #widget_container .load:hover { background: #e9e9e9;}
-  #widget_container #prev_entries { top: 14px; }
-  #widget_container #next_entries { bottom: 28px; }  
-  #widget_container #prev_entries span, 
-  #widget_container #next_entries span {
-    display: block;
-    height: 9px;
-    left: 150px;
-    position: absolute;
-    top: 2px;
-    width: 11px;
-  }
-  #widget_container #prev_entries span { background: url(/images/widget/widget.png) no-repeat -295px -64px; }
-  #widget_container #next_entries span { background: url(/images/widget/widget.png) no-repeat -311px -64px; }
-  
+    top: 0;
+    height: 450px;
+    width: 290px;      
+  }    
   #widget_footer {
   	background: url(/images/widget/widget.png) no-repeat 0 0;	
   	bottom: 0;
@@ -125,12 +106,10 @@
   	right: 10px; 
   	width: 146px;  	
   }  
-  
   #widget_border {
     border-left: 5px solid #dde5ea;        
     border-right: 5px solid #dde5ea;
   }
-  
   #widget_container #info_pane {
     display: block;
     left: 320px;    
@@ -142,9 +121,7 @@
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
     font-size: 12px;  
   }
-  #widget_container #info_content {
-    padding: 10px;
-  }
+  #widget_container #info_content { padding: 10px; }
   #widget_container #info_content dt {
     border-bottom: 1px solid #ccc;
     /*color: #fa6900;*/
@@ -159,13 +136,6 @@
     color: #39505e;
     margin: 0 0 1em 0;
   }
-  
-  #widget_wrapper {
-    position: relative;
-    height: 480px;
-    width: 640px;
-  }
-  
   #widget_nav { height: 35px; }   
   #widget_nav #back {
     background: url(/images/widget/widget.png) no-repeat left -64px; 
@@ -189,19 +159,10 @@
     width: 88px;        
   } 
   #widget_nav #view_entry:hover {  background-position: -205px -64px; } 
-  
   #widget_nav #back:active,
   #widget_nav #view_entry:active { outline: none; }   
   
-  #widget_content {
-    padding: 10px;
-    display: block;
-    left: 320px;    
-    position: absolute;
-    top: 0;
-    height: 460px;
-    width: 290px;      
-  }
+
   
 </style>
 
