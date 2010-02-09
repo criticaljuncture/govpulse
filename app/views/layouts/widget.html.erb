@@ -2,26 +2,19 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
+  <%# TODO HELP-RUBY CDN link below? %>
   <%= javascript_include_tag 'jquery.js' %>
-  
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      //center the link
-      var li_height = 40;
-
       $(".arrowholder, a.arrow").bind("click", function(e){
           e.preventDefault();
-          //$(this).closest("li").css("left", "-320px");
          $("#info_content").html( $(this).closest("li").find("div.full").html() );    
-         $("#widget_wrapper").animate({left: -320}, 500);
-         $("#widget_load_container").hide();
-         
+         $("#widget_wrapper").animate({left: -320}, 500);         
       });
       
       $("#back").bind("click", function(e){
         e.preventDefault();
         $("#widget_wrapper").animate({left: 0}, 300); 
-         $("#widget_load_container").show();              
       });
       
     });
