@@ -21,9 +21,7 @@
  #widget_container ul li:hover a.arrow,
  #widget_container ul li.hover a.arrow { background: url(/images/widget/sprite.png) no-repeat -225px -26px; } 
  #widget_container ul li:hover .arrowholder,
- #widget_container ul li.hover .arrowholder { background-color:#ececec; }
- 
- /*#widget_container ul li.odd { background:#f6f6f6; }*/
+ #widget_container ul li.hover .arrowholder { background-color:#ececec; } 
  #widget_container ul li .full { display:none; } 
  #widget_wrapper { position:relative;width:640px; } 
  #widget_content { padding:10px;display:block;left:320px;position:absolute;top:0;width:290px; } 
@@ -36,18 +34,12 @@
  color:#39505e;font-weight:bold;margin-bottom:2px;padding-bottom:2px;text-transform:uppercase; }
  #widget_container #info_content dd { color:#39505e;margin:0 0 1em 0; }
  #widget_nav { height:20px; width: 305px; } 
- 
  #widget_nav #back { background:url(/images/widget/sprite.png) no-repeat -104px    0;display:block;height:11px;float:left;margin-top: 2px; outline:none;text-indent:-9999px;width:46px; } 
  #widget_nav #back:hover { background-position:-104px -26px; }
- 
  #widget_nav #view_entry { background:url(/images/widget/sprite.png) no-repeat -150px 0;display:block;height:13px;float:right;margin: 1px 3px 0 0; outline:none;text-indent:-9999px;width:75px; } 
- 
  #widget_nav #view_entry:hover { background-position:-150px -26px; } 
  #widget_nav #back:active,
  #widget_nav #view_entry:active { outline:none; } 
-  
-
-  
 </style>
 
 <div id="widget_wrapper">
@@ -62,7 +54,7 @@
 
       <div class="full">
     
-        <%#= raise entry.inspect %>
+        <%# TODO HELP-RUBY don't show things that don't exist %>
         <dl>
           <dt>Title</dt>
           <dd><%= truncate(entry.title, :length => 200) %></dd>
