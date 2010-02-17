@@ -6,8 +6,13 @@
   <%= javascript_include_tag 'jquery.js' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
+      
+
+      //max-height: 210px
+      
       $(".arrowholder, a.arrow").bind("click", function(e){
           e.preventDefault();
+
          $("#info_content").html( $(this).closest("li").find("div.full").html() );    
          $("#widget_wrapper").animate({left: -320}, 500);         
       });
@@ -22,13 +27,10 @@
 </head>
 <body>
   <div id="widget_container">
-    
-    <div id="widget_border">
-      <%= yield %>
-    </div>
+    <%= yield %>
     <div id="widget_footer">
-      <a href="http://govpulse.us" title="govpulse">gov<span>pulse</span></a>
-      <p>Federal Register entries</p>
+      <a href="http://govpulse.us" title="govpulse" class="govpulse">gov<span>pulse</span></a>
+      <a href="#" class="search_results">Your Federal Register</a>
     </div>
   </div>
   

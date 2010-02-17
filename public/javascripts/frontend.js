@@ -18,7 +18,6 @@ $(document).ready(function() {
       });   
     });
   });
-
   
   $("#feedback").bind("mouseenter", function(){
     $(this).animate({left: -5}, 200); 
@@ -29,6 +28,7 @@ $(document).ready(function() {
   });
    
   $(":text, :password").labelify({ labelledClass: "labelHighlight" });
+  
   
   // This needs to be fixed to use a proper slug - may require url rewriting.
   $('.tag_cloud').each(function(){
