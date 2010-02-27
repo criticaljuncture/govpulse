@@ -7,3 +7,4 @@ config/newrelic.yml
 config/development.sphinx.conf
 public/sitemap*
 db/sphinx/
+.bundle
