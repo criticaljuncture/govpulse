@@ -4,7 +4,6 @@
  margin: 15px 0;
  position: relative;
 }
-
 .tab_container .nav {
   display: block;
   position:absolute;
@@ -15,6 +14,9 @@
 #main .tab_container .nav li {
   border-bottom: 1px solid #E5EBEE;
   padding: 0;
+}
+#main .tab_container .nav li:first-child {
+  border-top: 1px solid #E5EBEE;
 }
 #main .tab_container .nav li a {
   display: block;
@@ -39,7 +41,17 @@
   overflow: hidden;
   padding-bottom: 10px;  
 }
-
 .tab_content img {
   float: left;
+}
+
+dl.info_block dt {
+  clear: both;
+  float: left;
+  text-align: right;
+  width: 150px;
+}
+dl.info_block dd {
+  float: left;
+  width: 300px;
 }

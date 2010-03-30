@@ -1408,17 +1408,19 @@ div.wml-text-background {
 }
 
 /* line 946, ../../app/stylesheets/trifecta.sass */
-.small_map {
+.widescreen_map {
   width: 820px;
-  height: 300px;
-  margin: 0 0 10px 7px;
+}
+/* line 948, ../../app/stylesheets/trifecta.sass */
+.widescreen_map div.wml-container {
+  top: 0;
 }
 /* line 951, ../../app/stylesheets/trifecta.sass */
-.small_map div.wml-info-window-content ul {
+.widescreen_map div.wml-info-window-content ul {
   margin: 0;
 }
 /* line 953, ../../app/stylesheets/trifecta.sass */
-.small_map div.wml-info-window-content ul li {
+.widescreen_map div.wml-info-window-content ul li {
   margin-left: 10px;
 }
 
@@ -1427,37 +1429,38 @@ div.wml-text-background {
   background: #e5ebee;
   border: 1px solid #e5ebee;
   border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  float: left;
   padding: 10px;
 }
 
-/* line 964, ../../app/stylesheets/trifecta.sass */
+/* line 965, ../../app/stylesheets/trifecta.sass */
 .floatLeft {
   float: left;
 }
 
-/* line 966, ../../app/stylesheets/trifecta.sass */
+/* line 967, ../../app/stylesheets/trifecta.sass */
 .floatRight {
   float: right;
 }
 
-/* line 968, ../../app/stylesheets/trifecta.sass */
+/* line 969, ../../app/stylesheets/trifecta.sass */
 .marginTop {
   margin-top: 10px;
 }
 
-/* line 970, ../../app/stylesheets/trifecta.sass */
+/* line 971, ../../app/stylesheets/trifecta.sass */
 .marginBottom {
   margin-bottom: 10px !important;
 }
 
-/* line 972, ../../app/stylesheets/trifecta.sass */
+/* line 973, ../../app/stylesheets/trifecta.sass */
 .paddingLeft {
   padding-left: 10px;
 }
 
-/* line 974, ../../app/stylesheets/trifecta.sass */
+/* line 975, ../../app/stylesheets/trifecta.sass */
 ul.tag_cloud {
   font-size: 1.1em;
   line-height: 1.32em;
@@ -1490,12 +1493,12 @@ ul.tag_cloud .xl {
 ul.tag_cloud .xxl {
   font-size: 2.2em;
 }
-/* line 976, ../../app/stylesheets/trifecta.sass */
+/* line 977, ../../app/stylesheets/trifecta.sass */
 ul.tag_cloud li {
   float: left;
 }
 
-/* line 978, ../../app/stylesheets/trifecta.sass */
+/* line 979, ../../app/stylesheets/trifecta.sass */
 #tagcloud_label {
   background: #005b81;
   border: 2px solid #bde3f1;
