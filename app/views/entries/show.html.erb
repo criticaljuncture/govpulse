@@ -9,6 +9,129 @@
 <link rev="canonical" type="text/html" href="<%= short_entry_url(@entry) %>" />
 <% end %>
 
+<% content_for :precolumn do %>
+<div class="tab_container">
+
+  <ul class="nav">
+    <li><a href="#map">Locations Mentioned</a></li>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#share">Share</a></li>
+    <li><a href="#reachout">Reach Out</a></li>
+    <li><a href="#related_topics">Related Topics</a></li>
+    <li><a href="#cite">Citations</a></li>
+    <li><a href="#refs">Referenced By</a></li>
+  </ul>  
+  
+  <div class="tab_content_container">
+    <div class="tab_content_wrapper">
+
+      <div class="tab_content" id="map">
+      
+        <% if @entry.places.usable.present? %>
+          <% add_javascript { @map.to_js } %>
+          <div id="map" class="widescreen_map"></div>
+        <% end %>
+      
+      </div>
+      
+      <div class="tab_content" id="details">
+        <dl class='info_block'>
+          <% if @entry.publication_date.present?    %><dt>Publication Date:</dt>                 <dd><%= link_to @entry.publication_date.to_formatted_s(:pretty), entries_by_date_path(@entry.publication_date) %></dd><% end %>
+          <% if @entry.document_number.present?     %><dt>Document Number:</dt> <dd><%= @entry.document_number %></dd><% end %>
+          <% agency = display_agencies_for_entry(@entry) %>
+          <% if agency.present?                     %><dt>Publishing Agency:</dt><dd><%= display_agencies_for_entry(@entry)              %></dd><% end %>
+          <% if @entry.dates.present?               %><dt>Dates:</dt>            <dd><%= text_with_links(@entry, @entry.dates)           %></dd><% end %>
+          <% if @entry.effective_on.present?        %><dt>Effective Date:</dt>   <dd><%= @entry.effective_on                             %></dd><% end %>
+          <% if @entry.comments_close_on.present?   %><dt>Comments Close:</dt>   <dd><%= @entry.comments_close_on                        %></dd><% end %>
+          <% if @entry.action.present?              %><dt>Action:</dt>           <dd><%= @entry.action.titlecase                         %></dd><% end %>
+          <% if @entry.type.present?                %><dt>Type: </dt>            <dd><%= @entry.type                                     %></dd><% end %>
+          <% if @entry.entry_type.present?          %><dt>Entry Type:</dt>       <dd><%= @entry.entry_type                               %></dd><% end %>
+          <% if @entry.document_number.present?     %><dt>Other Formats:</dt>    <dd><%= %w(html text pdf).map{|format| link_to format, @entry.source_url(format), :class => format }.join(" | ") %>
+                                                                                     <%= ' | ' + link_to( 'regulations.gov', "http://www.regulations.gov/search/Regs/home.html#documentDetail?R=#{@entry.regulationsdotgov_id}") if @entry.regulationsdotgov_id.present? %></dd><% end %>
+          <dt>Page:</dt>      <dd><%= @entry.start_page %><%= "-#{@entry.end_page}" if @entry.end_page != @entry.start_page %> (<%= pluralize @entry.human_length, 'page' %>)</dd>
+        </dl>
+      </div>
+    
+      <div class="tab_content" id="share">
+        <ul class='social'>
+          <li id='twitter'    ><%= link_to_twitter(@entry)         %></li>
+          <li id='facebook'   ><%= link_to_facebook(@entry)        %></li>
+          <li id='digg'       ><%= link_to_digg(@entry)            %></li>
+          <li id='reddit'     ><%= link_to_reddit(@entry)          %></li>
+        </ul>
+        <p>
+          Or share a tiny url:
+          <span class='social' id='tiny_pulse'> 
+            <%= link_to short_entry_url(@entry), short_entry_url(@entry) %> 
+            <%= clippy(short_entry_url(@entry)) %>
+          </span>
+        </p>
+      </div>
+      
+      <div class="tab_content" id="reachout">
+        
+        <div id="congress">
+          <h5>Your Senators</h5>
+          <p class="loading">Loading<img src="/images/ticker_loading.gif" alt="loading" /></p>
+          <h5>Your Representative</h5>
+          <p class="loading">Loading<img src="/images/ticker_loading.gif" alt="loading" /></p>
+        </div>
+        
+        <span class='small_link'>(<%= link_to 'change location', edit_location_path %>)</span>
+
+        <% if @entry.comment_url.present? && (@entry.comments_close_on.nil? || @entry.comments_close_on >= Date.today) %>
+          <p><%= link_to "Submit a formal comment", @entry.comment_url %>. The agency is required to respond in a future FR entry.</p>
+        <% end %>
+        
+        <% if @entry.contact.present? %>
+          <h3>Contact</h3>
+          <p><%= auto_link @entry.contact %></p>
+        <% end %>
+      </div>  
+      
+      <div class="tab_content" id="related_topics">
+        <% if @entry.topics.present? %>
+        <ul>
+          <% @entry.topics.each do |topic| %>
+            <li><%= link_to topic.name, topic_group_path(topic) %></li>
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
+      
+      <div class="tab_content" id="cite">
+        <% if @entry.citations.present? %>
+          <% max_citations = 3 %>
+          <ul class="citation">
+            <%= render :partial => 'citation', :collection => @entry.citations.slice(0,max_citations) %>
+          </ul>
+          <% if @entry.citations.size > max_citations %>
+            <%= link_to "See all (#{@entry.citations.size})", entry_citation_path(@entry, :anchor => "citations"), :class => "raquo" %>
+          <% end %>
+
+        <% end %>
+      </div>
+      
+      <div class="tab_content" id="refs">
+        <% if @entry.referencing_entries.present? %>
+          <% max_citations = 3 %>
+          <ul class="citation">
+            <%= render :partial => "referencing_entry", :collection =>  @entry.referencing_entries.slice(0,max_citations) %>
+          </ul>
+          <% if @entry.referencing_entries.size > max_citations %>
+            <%= link_to "See all (#{@entry.referencing_entries.size})", entry_citation_path(@entry, :anchor => "referencing_entries") %>
+          <% end %>
+        <% end %>
+      </div>
+      
+    </div>
+  </div>  
+
+</div>
+<% end %>
+
+<div class="span-16">
+  
 <% if @entry.has_full_xml? %>
   <%=
    if @entry.graphic_usages.count > 0
@@ -20,15 +143,10 @@
    add_citation_links(html) %>
 <% elsif @entry.full_text %>
 
-<% if @entry.abstract %>
-  <h3>Summary</h3>
-  <p class='abstract'>
-    <%= text_with_links(@entry, @entry.abstract) %>
-  </p>
-<% end %>
+
 
 <h3>Full text</h3>
-<div class="fulltextWrapper span-16">
+<div class="fulltextWrapper">
   <pre><%=
     # FIXME: move out of view!
     text = @entry.full_text
@@ -69,98 +187,4 @@
   </ul>
 <% end %>
 
-<% content_for :sidebar do %>
-  <h3>Gather a Crowd</h3>
-  <ul class='social'>
-    <li id='twitter'    ><%= link_to_twitter(@entry)         %></li>
-    <li id='facebook'   ><%= link_to_facebook(@entry)        %></li>
-    <li id='digg'       ><%= link_to_digg(@entry)            %></li>
-    <li id='reddit'     ><%= link_to_reddit(@entry)          %></li>
-  </ul>
-  <p>
-    Or share a tiny url:
-    <span class='social' id='tiny_pulse'> 
-      <%= link_to short_entry_url(@entry), short_entry_url(@entry) %> 
-      <%= clippy(short_entry_url(@entry)) %>
-    </span>
-  </p>
-
-  <h3 class="hAction">
-    Speak Up 
-    <span class='small_link'>(<%= link_to 'change location', edit_location_path %>)</span>
-  </h3> 
-  
-  <% if @entry.comment_url.present? && (@entry.comments_close_on.nil? || @entry.comments_close_on >= Date.today) %>
-    <p><%= link_to "Submit a formal comment", @entry.comment_url %>. The agency is required to respond in a future FR entry.</p>
-  <% end %>
-  
-  <div class="">
-    <h3>Details</h3>
-    <dl class=''>
-      <% if @entry.publication_date.present?    %><dt>Publication Date:</dt>                 <dd><%= link_to @entry.publication_date.to_formatted_s(:pretty), entries_by_date_path(@entry.publication_date) %></dd><% end %>
-      <% if @entry.document_number.present?     %><dt>Document Number:</dt> <dd><%= @entry.document_number %></dd><% end %>
-      <% agency = display_agencies_for_entry(@entry) %>
-      <% if agency.present?                     %><dt>Publishing Agency:</dt><dd><%= display_agencies_for_entry(@entry)              %></dd><% end %>
-      <% if @entry.dates.present?               %><dt>Dates:</dt>            <dd><%= text_with_links(@entry, @entry.dates)           %></dd><% end %>
-      <% if @entry.effective_on.present?        %><dt>Effective Date:</dt>   <dd><%= @entry.effective_on                             %></dd><% end %>
-      <% if @entry.comments_close_on.present?   %><dt>Comments Close:</dt>   <dd><%= @entry.comments_close_on                        %></dd><% end %>
-      <% if @entry.action.present?              %><dt>Action:</dt>           <dd><%= @entry.action.titlecase                         %></dd><% end %>
-      <% if @entry.type.present?                %><dt>Type: </dt>            <dd><%= @entry.type                                     %></dd><% end %>
-      <% if @entry.entry_type.present?          %><dt>Entry Type:</dt>       <dd><%= @entry.entry_type                               %></dd><% end %>
-      <% if @entry.document_number.present?     %><dt>Other Formats:</dt>    <dd><%= %w(html text pdf).map{|format| link_to format, @entry.source_url(format), :class => format }.join(" | ") %>
-                                                                                 <%= ' | ' + link_to( 'regulations.gov', "http://www.regulations.gov/search/Regs/home.html#documentDetail?R=#{@entry.regulationsdotgov_id}") if @entry.regulationsdotgov_id.present? %></dd><% end %>
-      <dt>Page:</dt>      <dd><%= @entry.start_page %><%= "-#{@entry.end_page}" if @entry.end_page != @entry.start_page %> (<%= pluralize @entry.human_length, 'page' %>)</dd>
-    </dl>
-  </div>
-  
-  <div id="congress">
-    <h5>Your Senators</h5>
-    <p class="loading">Loading<img src="/images/ticker_loading.gif" alt="loading" /></p>
-    <h5>Your Representative</h5>
-    <p class="loading">Loading<img src="/images/ticker_loading.gif" alt="loading" /></p>
-  </div>
-  
-  
-  <% if @entry.contact.present? %>
-    <h3>Contact</h3>
-    <p><%= auto_link @entry.contact %></p>
-  <% end %>
-  
-  <% if @entry.topics.present? %>
-  <h3>Related Topics</h3>
-  <ul>
-    <% @entry.topics.each do |topic| %>
-      <li><%= link_to topic.name, topic_group_path(topic) %></li>
-    <% end %>
-  </ul>
-  <% end %>
-  
-  <% if @entry.places.usable.present? %>
-    <h3>Places Mentioned</h3>
-    <% add_javascript { @map.to_js } %>
-    <div id="map" style="width: 230px; height: 350px"></div>
-  <% end %>
-
-  <% if @entry.citations.present? %>
-    <h3>Citations</h3>
-    <% max_citations = 3 %>
-    <ul class="citation">
-      <%= render :partial => 'citation', :collection => @entry.citations.slice(0,max_citations) %>
-    </ul>
-    <% if @entry.citations.size > max_citations %>
-      <%= link_to "See all (#{@entry.citations.size})", entry_citation_path(@entry, :anchor => "citations"), :class => "raquo" %>
-    <% end %>
-    
-  <% end %>
-  
-  <% if @entry.referencing_entries.present? %>
-    <h3>Entries Referencing This</h3>
-    <% max_citations = 3 %>
-    <ul class="citation">
-      <%= render :partial => "referencing_entry", :collection =>  @entry.referencing_entries.slice(0,max_citations) %>
-    </ul>
-    <% if @entry.referencing_entries.size > max_citations %>
-      <%= link_to "See all (#{@entry.referencing_entries.size})", entry_citation_path(@entry, :anchor => "referencing_entries") %>
-    <% end %>
-  <% end %>
-<% end %>
+</div>

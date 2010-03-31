@@ -16,8 +16,9 @@
       <div class="tab_content_wrapper">
         <div class="tab_content" id="map">
           <% if @map.present? %>
-            <% add_javascript { @map.to_js } %>
-            <div id="map" class='widescreen_map'></div>
+            <div id="map" class='widescreen_map'>
+              <% add_javascript { @map.to_js } %>
+            </div>
           <% end %>
         </div>
       
