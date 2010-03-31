@@ -4,6 +4,7 @@
  margin: 15px 0;
  position: relative;
 }
+
 .tab_container .nav {
   display: block;
   position:absolute;
@@ -14,7 +15,7 @@
 #main .tab_container .nav li {
   border: 1px solid #fff;
   margin-bottom:3px;
-  padding: 5px 0;  
+  padding: 10px 0;  
 }
 
 #main .tab_container .nav li:first-child {
@@ -28,23 +29,21 @@
 }
 #main .tab_container .nav li a {
   display: block;
-  height: 32px;
-  line-height: 32px;
   padding: 0 50px;
   font-size: 110%;
 }
 #main .tab_container .nav li.on {
   background-color: #E5EBEE;
   border: 1px solid #E5EBEE;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px; /* future proofing */
-  -khtml-border-radius: 5px; /* for old Konqueror browsers */
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px; /* future proofing */
+  -khtml-border-radius: 8px; /* for old Konqueror browsers */
   -moz-border-radius-topright: 0px;
   -webkit-border-top-right-radius: 0px;
   -moz-border-radius-bottomright: 0px;
   -webkit-border-bottom-right-radius: 0px;  
-  width: 130px;
+  width: 125px;
 }
 
 #main .tab_container .nav li.on a {
@@ -56,10 +55,17 @@
   top: 0;
   width: 808px;
 }
+.tab_content_container.box_container {
+  border: 7px solid #E5EBEE;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; /* future proofing */
+  -khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
 .tab_content_wrapper {
   height: 320px; 
   overflow: hidden;   
-  }
+}
 .tab_content {
   height: 320px;
   margin-bottom: 10px;
