@@ -9,32 +9,46 @@
   position:absolute;
   left: 0;
   top: 0;
-  width: 100px;
+  width: 110px;
 }
 #main .tab_container .nav li {
-  border-bottom: 1px solid #E5EBEE;
-  padding: 5px 0;
+  border: 1px solid #fff;
   margin-bottom:3px;
+  padding: 5px 0;  
 }
 
 #main .tab_container .nav li:first-child {
-  border-top: 1px solid #E5EBEE;
 }
 
 #main .tab_container .nav li.map {
-  background: url(/images/tabs_map_icon.png) no-repeat top left;
+  background: url(/images/tabs_map_icon.png) no-repeat 5px 50%;
 }
 #main .tab_container .nav li.chart {
-  background: url(/images/tabs_chart_icon.png) no-repeat top left;
+  background: url(/images/tabs_chart_icon.png) no-repeat 5px 50%;
 }
-
 #main .tab_container .nav li a {
   display: block;
-  padding: 0 40px 5px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 50px;
   font-size: 110%;
 }
+#main .tab_container .nav li.on {
+  background-color: #E5EBEE;
+  border: 1px solid #E5EBEE;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; /* future proofing */
+  -khtml-border-radius: 5px; /* for old Konqueror browsers */
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;  
+  width: 130px;
+}
+
 #main .tab_container .nav li.on a {
-  font-weight: bold; 
+ /* font-weight: bold; */
 }
 .tab_content_container {
   position: absolute;
