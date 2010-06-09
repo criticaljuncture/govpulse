@@ -1,0 +1,18 @@
+<div id="embedded_map_<%= i %>" style="width: 550px; height: 300px"></div>
+<% if i == 0 %>
+<script type="text/javascript" src="<%= CLOUDMADE_SRC %>"></script>
+<% end %>
+<script>
+var map = new CM.Map('embedded_map_<%= i %>', new CM.Tiles.CloudMade.Web({key: '<%= CLOUDMADE_API_KEY %>'}));
+// map.setCenter(new CM.LatLng(38.89384, -77.03635), 16);
+
+var polygon = new CM.Polygon([
+  <% region.transformed_points.each do |point| %>
+    new CM.LatLng(<%= point.y %>, <%= point.x %>),
+  <% end %>
+]);
+map.zoomToBounds(polygon.getBounds());
+map.addControl(new CM.LargeMapControl());
+map.addControl(new CM.ScaleControl());
+map.addOverlay(polygon);
+</script>
