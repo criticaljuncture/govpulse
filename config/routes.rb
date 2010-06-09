@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.entries_search 'entries/search', :controller => 'entries', :action => 'search'
   map.entries_widget 'entries/widget', :controller => 'entries', :action => 'widget'
+  map.resources :entry_regions, :path_prefix => 'entries/:year/:month/:day/:document_number', :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/, :as => :regions, :only => [:show, :index], :controller => 'entries/regions'
   map.entry 'entries/:year/:month/:day/:document_number/:slug', :controller => 'entries',
                                                                 :action     => 'show',
                                                                 :year       => /\d{4}/,
