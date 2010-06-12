@@ -1,5 +1,5 @@
 xml.instruct!
-xml.kml(:xmlns => "http://earth.google.com/kml/2.2") do
+xml.kml(:xmlns => "http://www.opengis.net/kml/2.2") do
   xml.Document do
     xml.name("Regions for #{@entry.title}")
     xml.Style(:id => 'region') do
