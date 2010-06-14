@@ -6,24 +6,56 @@
     $('#congress').load('/location/congress');
   });
 </script>
+
 <link rev="canonical" type="text/html" href="<%= short_entry_url(@entry) %>" />
 <% end %>
 
 <% if @entry.has_full_xml? %>
   <%=
-   # if @entry.graphic_usages.count > 0
-   #   html = transform_xml(@entry.full_xml, 'entries/_full_text_with_images.html.xslt').to_s
-   # else
-   #   html = transform_xml(@entry.full_xml, 'entries/_full_text.html.xslt').to_s
-   # end
-   
-   html = transform_xml(@entry.full_xml, 'entries/_full_text_with_images.html.xslt').to_s
-   extractor = RegionExtractor.new(html) do |str, region, i|
-     str + render( :partial => 'embedded_map', :locals => {:region => region, :i => i})
-   end
-   html = extractor.resulting_text
-   html = auto_link(html, :href_options => { :class => 'external' })
-   add_citation_links(html) %>
+    # if @entry.graphic_usages.count > 0
+    #   html = transform_xml(@entry.full_xml, 'entries/_full_text_with_images.html.xslt').to_s
+    # else
+    #   html = transform_xml(@entry.full_xml, 'entries/_full_text.html.xslt').to_s
+    # end
+    
+    html = transform_xml(@entry.full_xml, 'entries/_full_text_with_images.html.xslt').to_s
+    extractor = RegionExtractor.new(html) do |str, region, i|
+      content = <<-HTML
+        <div class='enhanced_content_wrapper'>
+          <p class='map_header'>Map ##{ i+1 }</p>
+          <ul>
+            <li> <a href=''                   id="map_#{i}"    class='btn'>Map</a>          </li>
+            <li> <a href=''                   id="coords_#{i}" class='btn'>Coordinates</a>  </li>
+            <li> <a href='regions/#{i+1}.kml' id="kml_#{i}"    class='link'>Download KML</a> </li>
+          </ul>
+          <div id='coords_list_#{i}' class='coords_list'>#{str}</div>
+          #{ render(:partial => 'embedded_map', :locals => {:region => region, :i => i}) }
+        </div>
+      HTML
+      content 
+    end
+    html = extractor.resulting_text
+    html = auto_link(html, :href_options => { :class => 'external' })
+    add_citation_links(html)
+    html += <<-JS
+      <script>
+        $('.coords_list').hide();
+        $('.enhanced_content_wrapper ul li a.btn').live('click', function(e){
+          e.preventDefault();
+          var btn_name = $(this).attr('id').split('_')[0];
+          var map_num  = $(this).attr('id').split('_')[1];
+          if(btn_name == 'map'){
+            $('#coords_list_'+map_num).hide();
+            $('#embedded_map_wrapper_'+map_num).show();
+          }
+          else {
+            $('#embedded_map_wrapper_'+map_num).hide();
+            $('#coords_list_'+map_num).show();
+          }
+        });
+     </script>
+    JS
+  %>
 <% elsif @entry.full_text %>
 
 <% if @entry.abstract %>

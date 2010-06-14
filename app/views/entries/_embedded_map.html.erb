@@ -1,19 +1,60 @@
-<div id="embedded_map_<%= i %>" style="width: 550px; height: 300px"></div>
-<p>MAP#<%= i+1 %></p>
+<div id='embedded_map_wrapper_<%= i %>' class='embedded_map_wrapper'>
+  <div id="embedded_map_<%= i %>" class='embedded_map'></div>
+  <div id="embedded_mini_map_<%= i %>" class='embedded_mini_map'></div>
+</div>
+
 <% if i == 0 %>
-<script type="text/javascript" src="<%= CLOUDMADE_SRC %>"></script>
+  <script type="text/javascript" src="<%= CLOUDMADE_SRC %>"></script>
 <% end %>
 <script>
-var map = new CM.Map('embedded_map_<%= i %>', new CM.Tiles.CloudMade.Web({key: '<%= CLOUDMADE_API_KEY %>'}));
-// map.setCenter(new CM.LatLng(38.89384, -77.03635), 16);
+  var cm_tile = new CM.Tiles.CloudMade.Web({key: '<%= CLOUDMADE_API_KEY %>',  styleId: 1714})
+  var map = new CM.Map('embedded_map_<%= i %>', cm_tile);
+  // map.setCenter(new CM.LatLng(38.89384, -77.03635), 16);
 
-var polygon = new CM.Polygon([
-  <% region.transformed_points.each do |point| %>
-    new CM.LatLng(<%= point.y %>, <%= point.x %>),
-  <% end %>
-]);
-map.zoomToBounds(polygon.getBounds());
-map.addControl(new CM.LargeMapControl());
-map.addControl(new CM.ScaleControl());
-map.addOverlay(polygon);
+  var polygon = new CM.Polygon([
+    <% region.transformed_points.each do |point| %>
+      new CM.LatLng(<%= point.y %>, <%= point.x %>),
+    <% end %>
+  ]);
+  
+  poly_bounds = polygon.getBounds();
+  map.zoomToBounds(polygon.getBounds());
+  map.addControl(new CM.LargeMapControl());
+  
+  var topRight = new CM.ControlPosition(CM.TOP_RIGHT, new CM.Size(10, 10));
+  map.addControl(new CM.ScaleControl(), topRight);
+  map.disableScrollWheelZoom();
+  map.addOverlay(polygon);
+  
+  
+  var mini_map = new CM.Map('embedded_mini_map_<%= i %>', cm_tile);
+  var mapZoomLevel = map.getZoom();
+  mini_map.setCenter(poly_bounds.getCenter(), mapZoomLevel-10);
+  mini_map.disableScrollWheelZoom();
+  
+  $('.embedded_map .wml-copyright').hide();
+  $('.embedded_map .wml-scale-control').hide();
+  $('.embedded_map').live('mouseenter', function(e){
+    $(this).find('.wml-copyright').fadeIn(300);
+    $(this).find('.wml-scale-control').fadeIn(300);
+  });
+  $('.embedded_map').live('mouseleave', function(e){
+    $(this).find('.wml-copyright').fadeOut(300);
+    $(this).find('.wml-scale-control').fadeOut(300);
+  });
+  
+  
+  var bottomRight_mini = new CM.ControlPosition(CM.BOTTOM_RIGHT, new CM.Size(5, 5));
+  mini_map.addControl(new CM.SmallMapControl(), bottomRight_mini);
+
+  mini_map.addOverlay(polygon);
+  
+  $('.embedded_mini_map .wml-copyright-text').hide();
+  $('.embedded_mini_map .wml-map-control').hide();
+  $('.embedded_mini_map').live('mouseenter', function(e){
+    $(this).find('.wml-map-control').fadeIn(300);
+  });
+  $('.embedded_mini_map').live('mouseleave', function(e){
+    $(this).find('.wml-map-control').fadeOut(300);
+  });
 </script>
