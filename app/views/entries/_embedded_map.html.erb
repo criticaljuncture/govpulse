@@ -47,7 +47,14 @@
   var bottomRight_mini = new CM.ControlPosition(CM.BOTTOM_RIGHT, new CM.Size(5, 5));
   mini_map.addControl(new CM.SmallMapControl(), bottomRight_mini);
 
-  mini_map.addOverlay(polygon);
+  // need to rebuild the polygon - if we add the original to the mini map, then the
+  // original will no longer resize when it's map is moved.
+  var mini_polygon = new CM.Polygon([
+    <% region.transformed_points.each do |point| %>
+      new CM.LatLng(<%= point.y %>, <%= point.x %>),
+    <% end %>
+  ]);
+  mini_map.addOverlay(mini_polygon);
   
   $('.embedded_mini_map .wml-copyright-text').hide();
   $('.embedded_mini_map .wml-map-control').hide();
