@@ -113,11 +113,14 @@ module Cloudkicker
       js << "   var myMarkerLatLng_#{@id} = new CM.LatLng(#{@lat},#{@long});"
       
       js << '   var icon = new CM.Icon();'
-      js << '   icon.image  = "/images/map_marker.png";'
-      js << '   icon.iconSize = new CM.Size(31, 48);'
-      js << '   icon.shadow  = "/images/map_marker_shadow.png";'
-      js << '   icon.shadowSize = new CM.Size(31, 48);'
-      js << '   icon.iconAnchor = new CM.Point(20, 48);'
+      js << '   icon.image  = "/images/dot_med.png";'
+      js << '   icon.iconSize = new CM.Size(21, 21);'
+      
+      #js << '   icon.image  = "/images/map_marker.png";'
+      #js << '   icon.iconSize = new CM.Size(31, 48);'
+      #js << '   icon.shadow  = "/images/map_marker_shadow.png";'
+      #js << '   icon.shadowSize = new CM.Size(31, 48);'
+      #js << '   icon.iconAnchor = new CM.Point(20, 48);'
       
       js << "   var myMarker_#{@id} = new CM.Marker(myMarkerLatLng_#{@id}, {"
       js << "     title: '#{@title}',"
@@ -127,7 +130,7 @@ module Cloudkicker
       # Add listener to marker
       js << "   CM.Event.addListener(myMarker_#{@id}, 'click', function(latlng) {"
       # TODO single quotes should be esacaped not deleted. Escaping doesn't seem to be working at the moment though... clearly missing something
-      js << "     map.openInfoWindow(myMarkerLatLng_#{@id}, '#{@info.gsub(/'/,"")}', {maxWidth: #{@max_width}, pixelOffset: new CM.Size(-8,-50)});"
+      js << "     map.openInfoWindow(myMarkerLatLng_#{@id}, '#{@info.gsub(/'/,"")}', {maxWidth: #{@max_width}, pixelOffset: new CM.Size(0,-10)});"
       js << '   });'
       
       js << ''
