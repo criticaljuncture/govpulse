@@ -6,9 +6,9 @@ namespace :data do
     data:download:full_text
     data:extract:agencies
     data:extract:places
-    data:extract:regulationsdotgov_id
     data:cache:update:all
     data:cache:expire
+    data:extract:regulationsdotgov_id
     tmp:cache:clear
     thinking_sphinx:index
     sitemap:refresh
