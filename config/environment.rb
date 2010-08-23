@@ -14,34 +14,8 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
-  # Specify gems that this application depends on and have them installed with rake gems:install
-  config.gem "nokogiri", :version => '1.3.2'
-  config.gem "chronic", :version => '0.2.3'
-  config.gem "zilkey-active_api", :lib => 'active_api', :version => '0.2.0'
-  config.gem "curb", :version => '0.4.4.0'
-  config.gem "haml", :version => '2.2.14'
-  config.gem "chriseppstein-compass", :lib => 'compass', :version => '0.8.8'
-  config.gem "geokit", :lib => 'geokit', :version => '1.4.1'
-  config.gem 'mislav-will_paginate', :version => '2.3.11', :lib => 'will_paginate'
-  config.gem "fastercsv", :version => '1.4.0'
-  config.gem "amatch", :version => '0.2.3'
-  config.gem "rubyzip", :lib => 'zip/zip', :version => '0.9.1'
-  
-  config.gem "patron", :version => "0.4.2"
-  # sunlight gem and dependencies
-  config.gem "json"
-  config.gem "ym4r", :version => '0.6.1'
-  config.gem 'sunlight', :version => '1.0.1'
-  config.gem 'thinking-sphinx', :version => '1.3.14', :lib => 'thinking_sphinx'
-  config.gem 'hoptoad_notifier', :version => '2.1.3'
-  config.gem "aws-s3", :lib => "aws/s3", :version => '0.6.2'
-  config.gem 'paperclip', :version => '2.3.1.1'
-  config.gem 'stevedore', :version => '0.0.1'
-  config.gem 'region_extractor', :version => '0.0.1'
-  # disabled as requires C library to install...the Locator module will return a fake result if not installed
-  # config.gem "geoip_city", :version => '0.2.0'
-  
-  
+  # Specify gems that this application depends on in Gemfile
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
