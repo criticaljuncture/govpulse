@@ -4,118 +4,122 @@ dependencies:
     group: 
     - :default
     version: = 1.4.0
-  sunlight: 
-    group: 
-    - :default
-    version: = 1.0.1
   rails: 
     group: 
     - :default
     version: = 2.3.5
     require: []
 
+  sunlight: 
+    group: 
+    - :default
+    version: = 1.0.1
   mongrel: 
     group: 
     - :development
     version: ">= 0"
-  haml: 
-    group: 
-    - :default
-    version: = 2.2.14
-  mysql: 
-    group: 
-    - :default
-    version: = 2.7
-  curb: 
-    group: 
-    - :default
-    version: = 0.4.4.0
   chriseppstein-compass: 
     group: 
     - :default
     version: = 0.8.8
     require: 
     - compass
-  region_extractor: 
+  curb: 
     group: 
     - :default
-    version: = 0.0.1
-  zilkey-active_api: 
+    version: = 0.4.4.0
+  mysql: 
     group: 
     - :default
-    version: = 0.2.0
-    require: 
-    - active_api
+    version: = 2.7
+  haml: 
+    group: 
+    - :default
+    version: = 2.2.14
   mislav-will_paginate: 
     group: 
     - :default
     version: = 2.3.11
     require: 
     - will_paginate
+  zilkey-active_api: 
+    group: 
+    - :default
+    version: = 0.2.0
+    require: 
+    - active_api
+  region_extractor: 
+    group: 
+    - :default
+    version: = 0.0.1
   amatch: 
     group: 
     - :default
     version: = 0.2.3
-  geokit: 
-    group: 
-    - :default
-    version: = 1.4.1
-    require: 
-    - geokit
-  rack: 
-    group: 
-    - :default
-    version: = 1.0.1
-  patron: 
-    group: 
-    - :default
-    version: = 0.4.2
   thinking-sphinx: 
     group: 
     - :default
     version: = 1.3.14
     require: 
     - thinking_sphinx
-  paperclip: 
+  patron: 
     group: 
     - :default
-    version: = 2.3.1.1
+    version: = 0.4.2
+  rack: 
+    group: 
+    - :default
+    version: = 1.0.1
+  geokit: 
+    group: 
+    - :default
+    version: = 1.4.1
+    require: 
+    - geokit
   json: 
     group: 
     - :default
     version: ">= 0"
+  paperclip: 
+    group: 
+    - :default
+    version: = 2.3.1.1
   ym4r: 
     group: 
     - :default
     version: = 0.6.1
-  hoptoad_notifier: 
-    group: 
-    - :default
-    version: = 2.1.3
-  chronic: 
-    group: 
-    - :default
-    version: = 0.2.3
   stevedore: 
     group: 
     - :default
     version: = 0.0.1
+  chronic: 
+    group: 
+    - :default
+    version: = 0.2.3
+  hoptoad_notifier: 
+    group: 
+    - :default
+    version: = 2.1.3
   rails-footnotes: 
     group: 
     - :development
     version: ">= 0"
-  rubyzip: 
-    group: 
-    - :default
-    version: = 0.9.1
-    require: 
-    - zip/zip
   aws-s3: 
     group: 
     - :default
     version: = 0.6.2
     require: 
     - aws/s3
+  rubyzip: 
+    group: 
+    - :default
+    version: = 0.9.1
+    require: 
+    - zip/zip
+  thunder_punch: 
+    group: 
+    - :default
+    version: = 0.0.6
   nokogiri: 
     group: 
     - :default
@@ -147,6 +151,18 @@ specs:
     version: 1.0.12
 - aws-s3: 
     version: 0.6.2
+- highline: 
+    version: 1.6.1
+- net-ssh: 
+    version: 2.0.23
+- net-scp: 
+    version: 1.0.3
+- net-sftp: 
+    version: 2.0.5
+- net-ssh-gateway: 
+    version: 1.0.1
+- capistrano: 
+    version: 2.5.19
 - cgi_multipart_eof_fix: 
     version: 2.5.0
 - haml: 
@@ -209,9 +225,11 @@ specs:
     version: 1.0.1
 - thinking-sphinx: 
     version: 1.3.14
+- thunder_punch: 
+    version: 0.0.6
 - zilkey-active_api: 
     version: 0.2.0
-hash: 6613dba23348cf4c2c8be5639b8806af788ddee5
+hash: 9a240cea3cbebb8e00cfa86b13bde8c6e5b74548
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org

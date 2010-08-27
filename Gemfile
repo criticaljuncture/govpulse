@@ -33,6 +33,9 @@ gem 'paperclip',        '2.3.1.1'
 gem 'stevedore',        '0.0.1'
 gem 'region_extractor', '0.0.1'
 
+# deployment recipes
+gem 'thunder_punch',    '0.0.6'
+
 # disabled as requires C library to install...
 #the Locator module will return a fake result if not installed
 # gem "geoip_city", '0.2.0'
