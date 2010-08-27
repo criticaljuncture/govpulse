@@ -13,7 +13,7 @@ dependencies:
   sunlight: 
     group: 
     - :default
-    version: = 1.0.1
+    version: = 1.0.7
   mongrel: 
     group: 
     - :development
@@ -222,14 +222,14 @@ specs:
 - ym4r: 
     version: 0.6.1
 - sunlight: 
-    version: 1.0.1
+    version: 1.0.7
 - thinking-sphinx: 
     version: 1.3.14
 - thunder_punch: 
     version: 0.0.6
 - zilkey-active_api: 
     version: 0.2.0
-hash: 9a240cea3cbebb8e00cfa86b13bde8c6e5b74548
+hash: 25f64da8e6b09bda8ddf45c5480b9c4a7d95bea1
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org

@@ -24,7 +24,7 @@ gem "patron",                '0.4.2'
 # sunlight gem and dependencies
 gem "json"
 gem "ym4r",     '0.6.1'
-gem 'sunlight', '1.0.1'
+gem 'sunlight', '1.0.7'
 
 gem 'thinking-sphinx',  '1.3.14', :require => 'thinking_sphinx'
 gem 'hoptoad_notifier', '2.1.3'
