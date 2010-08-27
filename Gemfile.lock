@@ -120,6 +120,8 @@ dependencies:
     group: 
     - :default
     version: = 0.0.6
+    require: []
+
   nokogiri: 
     group: 
     - :default
@@ -229,7 +231,7 @@ specs:
     version: 0.0.6
 - zilkey-active_api: 
     version: 0.2.0
-hash: 25f64da8e6b09bda8ddf45c5480b9c4a7d95bea1
+hash: 9c732d8944ea96f7eb016514361db0826bf77b81
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org

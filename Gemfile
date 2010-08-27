@@ -34,7 +34,7 @@ gem 'stevedore',        '0.0.1'
 gem 'region_extractor', '0.0.1'
 
 # deployment recipes
-gem 'thunder_punch',    '0.0.6'
+gem 'thunder_punch',    '0.0.6', :require => false
 
 # disabled as requires C library to install...
 #the Locator module will return a fake result if not installed
