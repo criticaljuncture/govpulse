@@ -10,3 +10,4 @@
 /public/sitemap*
 /db/sphinx/
 .bundle
+vendor/bundle
