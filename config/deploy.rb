@@ -68,8 +68,7 @@ set(:branch) { `git branch`.match(/\* (.*)/)[1] }
 
 set :rails_env,  "production"                           
 set :deploy_to,  "/var/www/apps/#{application}" 
-#set :domain,     "204.236.234.36" #gp1_ec2 -- ec2-204-236-234-36.compute-1.amazonaws.com
-set :domain,     "ec2-184-73-55-26.compute-1.amazonaws.com" #ec2 large server
+set :domain,     "ec2-204-236-234-36.compute-1.amazonaws.com" #ec2 large server
 set :url,        "#{domain}"     
 set :server_url, "#{domain}"
 
@@ -108,6 +107,13 @@ set :github_username, 'criticaljuncture'
 # This will execute the Git revision parsing on the *remote* server rather than locally
 set :real_revision, lambda { source.query_revision(revision) { |cmd| capture(cmd) } }
 set :git_enable_submodules, true
+
+
+#############################################################
+# Bundler
+#############################################################
+
+set(:gem_file_groups) { [:development] }
 
 
 #############################################################
